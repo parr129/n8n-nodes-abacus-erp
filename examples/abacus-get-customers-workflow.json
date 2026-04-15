@@ -1,0 +1,56 @@
+{
+  "name": "Abacus ERP - Get Customers",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        260,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getCustomers",
+        "returnAll": true,
+        "pageSize": 100,
+        "customerStatus": "active"
+      },
+      "id": "abacus-customers",
+      "name": "Abacus ERP",
+      "type": "n8n-nodes-abacus-erp.abacusErp",
+      "typeVersion": 1,
+      "position": [
+        540,
+        280
+      ],
+      "credentials": {
+        "abacusOAuth2Api": {
+          "id": "replace-with-your-credential-id",
+          "name": "Abacus ERP OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Abacus ERP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "replace-with-your-n8n-instance-id"
+  }
+}

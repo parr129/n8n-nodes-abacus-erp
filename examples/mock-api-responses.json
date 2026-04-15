@@ -1,0 +1,42 @@
+{
+  "customers": {
+    "data": [
+      {
+        "id": "CUS-1001",
+        "name": "Acme Corp",
+        "status": "active",
+        "email": "accounts@acme.example"
+      }
+    ],
+    "meta": {
+      "page": 1,
+      "limit": 50,
+      "total": 1,
+      "totalPages": 1,
+      "hasMore": false
+    }
+  },
+  "orders": {
+    "data": [
+      {
+        "id": "SO-2048",
+        "customer_id": "CUS-1001",
+        "status": "open",
+        "total": 1999.99
+      }
+    ],
+    "meta": {
+      "page": 1,
+      "limit": 50,
+      "total": 1,
+      "totalPages": 1,
+      "hasMore": false
+    }
+  },
+  "invoice": {
+    "id": "INV-3001",
+    "customer_id": "CUS-1001",
+    "status": "posted",
+    "total": 2500
+  }
+}

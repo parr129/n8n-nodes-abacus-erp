@@ -1,0 +1,97 @@
+{
+  "name": "Abacus ERP - Create Invoice",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "customerId",
+              "value": "CUS-1001"
+            }
+          ]
+        }
+      },
+      "id": "set-input",
+      "name": "Prepare Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        460,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "createInvoice",
+        "invoiceCustomerId": "={{ $json.customerId }}",
+        "invoiceDate": "2026-04-15T00:00:00.000Z",
+        "invoiceDueDate": "2026-04-30T00:00:00.000Z",
+        "invoiceCurrency": "USD",
+        "invoiceReference": "INV-DEMO-001",
+        "invoiceNotes": "Created from sample n8n workflow",
+        "invoiceLines": {
+          "line": [
+            {
+              "itemCode": "CONSULTING",
+              "description": "Monthly consulting retainer",
+              "quantity": 1,
+              "unitPrice": 2500,
+              "taxCode": "VAT"
+            }
+          ]
+        }
+      },
+      "id": "abacus-invoice",
+      "name": "Abacus ERP",
+      "type": "n8n-nodes-abacus-erp.abacusErp",
+      "typeVersion": 1,
+      "position": [
+        700,
+        260
+      ],
+      "credentials": {
+        "abacusOAuth2Api": {
+          "id": "replace-with-your-credential-id",
+          "name": "Abacus ERP OAuth2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Input": {
+      "main": [
+        [
+          {
+            "node": "Abacus ERP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

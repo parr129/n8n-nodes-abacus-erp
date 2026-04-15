@@ -1,0 +1,66 @@
+{
+  "name": "n8n-nodes-abacus-erp",
+  "version": "0.1.0",
+  "description": "Production-ready n8n community node for Abacus ERP APIs with OAuth2 support.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "abacus",
+    "erp",
+    "oauth2",
+    "automation"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/your-org/n8n-nodes-abacus-erp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/n8n-nodes-abacus-erp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/n8n-nodes-abacus-erp/issues"
+  },
+  "author": "Your Name <you@example.com>",
+  "files": [
+    "dist",
+    "dist/nodes/AbacusErp/abacus.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.js",
+    "clean": "powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist }\"",
+    "dev": "tsc -p tsconfig.json --watch",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "npm run build && node test/helpers.test.js",
+    "test:watch": "powershell -Command \"while ($true) { node test/helpers.test.js; Start-Sleep -Seconds 2 }\""
+  },
+  "peerDependencies": {
+    "n8n-workflow": "^1.82.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "n8n-workflow": "^1.82.0",
+    "typescript": "^5.8.3"
+  },
+  "overrides": {
+    "n8n-workflow": {
+      "form-data": "4.0.4",
+      "lodash": "4.18.0"
+    }
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/AbacusOAuth2Api.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/AbacusErp/AbacusErp.node.js"
+    ]
+  }
+}
