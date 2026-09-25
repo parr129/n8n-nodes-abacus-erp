@@ -41,31 +41,6 @@ n8n-nodes-abacus-erp/
 `-- tsconfig.json
 ```
 
-## Installation
-
-### Local development
-
-```bash
-git clone https://github.com/your-org/n8n-nodes-abacus-erp.git
-cd n8n-nodes-abacus-erp
-npm install
-npm run build
-npm test
-```
-
-### Install into self-hosted n8n
-
-```bash
-npm install n8n-nodes-abacus-erp
-```
-
-If you run n8n with Docker, mount a custom extensions directory and set:
-
-```bash
-N8N_CUSTOM_EXTENSIONS=/home/node/.n8n/custom
-```
-
-Then install the package inside that directory or bake it into your image.
 
 ## Credentials Setup
 
